@@ -68,7 +68,6 @@ public class PlayerWeapon : MonoBehaviour
         flash.GetComponent<MeshRenderer>().enabled = true;
         if (Physics.Raycast(ray, out HitInfo, 100f))
         {
-            Debug.Log(HitInfo.collider.gameObject.name);
             if (HitInfo.collider.gameObject.name == "Enemy")
             {
                 HitInfo.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);

@@ -37,4 +37,12 @@ public class PlayerUi : MonoBehaviour
         Time.timeScale = 1;
 
     }
+    public void Victory()
+    {
+        Time.timeScale = 0.2f;
+        deathText.text = "You Win";
+        restartButton.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 1;
+    }
 }

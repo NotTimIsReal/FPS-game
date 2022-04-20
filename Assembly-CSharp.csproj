@@ -57,6 +57,10 @@
      <Compile Include="Assets/Scripts/Match/Win.cs" />
      <Compile Include="Assets/Low Poly Guns/Scripts/GunView.cs" />
      <Compile Include="Assets/Scripts/Player/PlayerInteract.cs" />
+     <Compile Include="Assets/Scripts/Match/SpawnPoint.cs" />
+     <Compile Include="Assets/Scripts/Allies/AlliesAi.cs" />
+     <Compile Include="Assets/Scripts/Allies/AlliesWeapon.cs" />
+     <Compile Include="Assets/Scripts/Allies/AlliesHealth.cs" />
      <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
      <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets/NavMeshComponents/ProjectSettings/ProjectVersion.txt" />

@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class EnemyAI : MonoBehaviour
+public class AlliesAi : MonoBehaviour
 {
     // Start is called before the first frame update
     public NavMeshAgent agent;
     public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsGround, whatIsPlayer, enemies;
     public Vector3 walkpoint;
     public bool walkPointSet;
     public float walkPointRange;
@@ -16,9 +16,11 @@ public class EnemyAI : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInRange;
     private EnemyWeapon enemyWeapon;
+    private GameObject enemy;
     void Awake()
     {
         player = GameObject.Find("Player").transform;
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
         agent = GetComponent<NavMeshAgent>();
         enemyWeapon = GetComponent<EnemyWeapon>();
     }
@@ -26,8 +28,8 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, enemies);
+        playerInRange = Physics.CheckSphere(transform.position, attackRange, enemies);
         if (!playerInSightRange && !playerInRange)
         {
             Patrolling();
@@ -75,12 +77,12 @@ public class EnemyAI : MonoBehaviour
     }
     private void Chasing()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(enemy.transform.position);
     }
     private void Attack()
     {
         agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        transform.LookAt(enemy.transform);
         enemyWeapon.Shoot();
         if (!alreadyAttacked)
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWeapon : MonoBehaviour
+public class AlliesWeapon : MonoBehaviour
 {
     public float fireRate = 100f;
     public float damage = 10f;
@@ -15,10 +15,10 @@ public class EnemyWeapon : MonoBehaviour
         RaycastHit HitInfo;
         if (Physics.Raycast(ray, out HitInfo, 100f))
         {
-            if (HitInfo.collider.gameObject.tag == "Allies")
+            if (HitInfo.collider.gameObject.tag == "Enemy")
             {
 
-                HitInfo.collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+                HitInfo.collider.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             }
         }
     }

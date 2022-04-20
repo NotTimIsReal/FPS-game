@@ -6,7 +6,7 @@ public class Win : MonoBehaviour
 {
     // Start is called before the first frame update
     private LayerMask Allies;
-    private LayerMask Player;
+    private GameObject Player;
     private LayerMask Enemies;
     private float currentPlayerCount;
     private float enemyCount;
@@ -16,7 +16,7 @@ public class Win : MonoBehaviour
     private float originalPlayerCount;
     void Start()
     {
-        Player = LayerMask.GetMask("Player");
+        Player = GameObject.Find("Player");
         Allies = LayerMask.GetMask("Allies");
         Enemies = LayerMask.GetMask("Enemies");
         //get all gameobjects that are named Player
@@ -36,10 +36,12 @@ public class Win : MonoBehaviour
         if (allies.Length == 0)
         {
             Debug.Log("Enemies Win");
+
         }
         if (enemies.Length == 0)
         {
             Debug.Log("Allies Win");
+            Player.GetComponent<PlayerUi>().Victory();
         }
         currentPlayerCount = allies.Length + enemies.Length;
     }
